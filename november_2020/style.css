@@ -1,0 +1,91 @@
+table {
+  color: #06425c;
+  border-spacing: 0;
+  border: 3px solid black;
+  -ms-border-radius: 0 0 25px 25px;
+  -o-border-radius: 0 0 25px 25px;
+  border-radius: 0 0 25px 25px;
+}
+
+tr:nth-child(odd) {
+  background: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background: #cdbb79;
+}
+
+tr:last-child {
+  -ms-border-radius: 25px 25px 0 0;
+  -o-border-radius: 25px 25px 0 0;
+  border-radius: 25px 25px 0 0; /* flip the order? */
+}
+tr:last-child > td:first-child {
+  -ms-border-radius: 0 0 0 25px;
+  -o-border-radius: 0 0 0 25px;
+  border-radius: 0 0 0 25px;
+}
+
+tr:last-child > td:last-child {
+  -ms-border-radius: 0 0 25px 0;
+  -o-border-radius: 0 0 25px 0;
+  border-radius: 0 0 25px 0;
+}
+
+caption {
+  text-transform: uppercase;
+  background-color: #4a53d3;
+  color: #ffffff;
+  font-size: 150%;
+  -ms-border-radius: 25px 25px 0 0;
+  -o-border-radius: 25px 25px 0 0;
+  border-radius: 25px 25px 0 0;
+}
+
+th td {
+  margin: 2px;
+  padding-bottom: 2px;
+}
+
+th {
+  text-align: center;
+  background: #ffffff;
+}
+
+td {
+  width: 75px;
+  height: 75px;
+  vertical-align: top;
+}
+
+.holiday {
+  margin: 0;
+  padding: 0;
+  background: rgb(50, 246, 247);
+  background: linear-gradient(
+    0deg,
+    rgba(50, 246, 247, 1) 0%,
+    rgba(126, 253, 45, 1) 100%
+  );
+}
+
+.december {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/389177/holiday.png")
+    no-repeat;
+  padding: 0;
+  margin: 0;
+  background-color: #51a39d;
+  color: rgba(0, 0, 0, 0.25);
+  border-spacing: 0;
+}
+
+span {
+  display: block;
+  text-align: center;
+  color: #800000;
+  visibility: hidden;
+}
+
+td:active > span {
+  visibility: visible;
+}
