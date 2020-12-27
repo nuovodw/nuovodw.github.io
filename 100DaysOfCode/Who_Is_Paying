@@ -1,0 +1,7 @@
+let names = ['Daniel', 'Audrey', 'Ben', 'Karen', 'Melanie', 'Dusan'];
+
+function whosPaying(names) {
+	const pickRandomNumber = Math.floor(Math.random() * names.length);
+	const pickRandomPerson = names[pickRandomNumber];
+	return `${pickRandomPerson} is going to buy lunch today!`;
+}
