@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dan's Number Guessing Game</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<header>
+			<h1>Number Guessing Game!</h1>
+			<p>(between 1 and 20)</p>
+			<button class="again">Again!</button>
+			<div class="winner">?</div>
+		</header>
+		<main>
+			<section>
+				<p class="message">Take a guess!</p>
+			</section>
+			<section>
+				<input type="number" class="user-number" />
+				<button class="check">Check</button>
+			</section>
+			<section>
+				<p class="default-score">Score: <span class="score">20</span></p>
+				<p>Current High Score: <span class="highscore">0</span></p>
+			</section>
+			<script src="script.js"></script>
+		</main>
+	</body>
+</html>
