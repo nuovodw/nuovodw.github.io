@@ -20,3 +20,10 @@ for (i = 0; i < openModalWindow.length; i++) {
 //2. Close modal window by a) clicking x b)cliking overlay
 closeModalWindow.addEventListener('click', closeWindow);
 overlay.addEventListener('click', closeWindow);
+
+// c) by pressing the 'escape' key
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !theModalWindow.classList.contains('hidden')) {
+    closeWindow();
+  }
+});
