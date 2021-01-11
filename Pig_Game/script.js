@@ -1,36 +1,35 @@
 'use strict';
-//Selecting elements
-const score0El = document.querySelector('#score--0');
-const score1El = document.getElementById('score--1');
-const diceEl = document.querySelector('.dice');
-const btnNew = document.querySelector('.btn--new');
-const btnRoll = document.querySelector('.btn--roll');
-const btnHold = document.querySelector('.btn--hold');
-const current0El = document.getElementById('current--0');
-const current1El = document.getElementById('current--1');
+//Set dice to zero
+const scorePlayer0 = document.getElementById('score--0');
+const scorePlayer1 = document.getElementById('score--1');
+const crntScorePlayer0 = document.getElementById('current--0');
+const dice = document.querySelector('.dice');
+let currentScore = 0;
 
-//Starting conditions
-score0El.textContent = 0;
-score1El.textContent = 0;
-diceEl.classList.add('hidden'); //Hide the die
+scorePlayer0.textContent = 0;
+scorePlayer1.textContent = 0;
 
-let currentScore = 0; //cannot be inside the function; otherwise it would be set to 0 when we reset
+//hide dice image
+//1. add .hidden to css
+dice.classList.add('hidden');
 
-//rolling dice functionality
-btnRoll.addEventListener('click', function () {
-  //1. Generating a random dice roll
-  const dice = Math.trunc(Math.random() * 6) + 1;
+//random dice roll
+const btnRoll = document.addEventListener('click', function () {
+  //Random number between 1-6
+  const randomNumber = Math.trunc(Math.random() * 6 + 1);
+  console.log(randomNumber);
 
-  //2. Display dice
-  diceEl.classList.remove('hidden');
-  diceEl.src = `dice-${dice}.png`;
+  //show dice
+  dice.classList.remove('hidden');
 
-  //3. Check for rolled 1; if true, switch to next player
-  if (dice !== 1) {
-    // Add dice to current score
-    currentScore = currentScore + dice;
-    current0El.textContent = currentScore; //change later
+  //match dice image with randomNumber
+  dice.src = `dice-${randomNumber}.png`;
+
+  //If rolled 1, switch to next player
+  if (randomNumber !== 1) {
+    currentScore = currentScore + randomNumber;
+    crntScorePlayer0.textContent = currentScore;
   } else {
-    // Switch to next player
+    //
   }
 });
