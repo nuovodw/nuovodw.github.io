@@ -5,8 +5,11 @@ const scorePlayer1 = document.getElementById('score--1');
 const crntScorePlayer0 = document.getElementById('current--0');
 const crntScorePlayer1 = document.getElementById('current--1');
 const dice = document.querySelector('.dice');
+const btnRoll = document.querySelector('.btn--roll');
+const btnHold = document.querySelector('.btn--hold');
 let currentScore = 0;
-let activePlayer = 0; //player 1 = 0; player 2 = 1;
+let activePlayer = 0;
+const totalScore = [0, 0]; //player 1 = 0; player 2 = 1;
 
 scorePlayer0.textContent = 0;
 scorePlayer1.textContent = 0;
@@ -16,7 +19,7 @@ scorePlayer1.textContent = 0;
 dice.classList.add('hidden');
 
 //random dice roll
-const btnRoll = document.addEventListener('click', function () {
+btnRoll.addEventListener('click', function () {
   //Random number between 1-6
   const randomNumber = Math.trunc(Math.random() * 6 + 1);
 
@@ -51,3 +54,13 @@ const btnRoll = document.addEventListener('click', function () {
     document.querySelector('.player--1').classList.toggle('player--active');
   }
 });
+
+//Hold and add the current score to the total score; switch players
+// btnHold.addEventListener('click', function () {
+//   //add the score to the totalScore
+//   totalScore[0] = currentScore + s;
+//   console.log(totalScore[0]);
+//   //switch players
+// });
+
+//score--0 = 43; add current--0 to score--0; display score--0
