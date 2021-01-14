@@ -10,6 +10,7 @@ const btnHold = document.querySelector('.btn--hold');
 let currentScore = 0;
 let activePlayer = 0;
 const totalScore = [0, 0]; //player 1 = 0; player 2 = 1;
+let yesPlaying = true;
 
 scorePlayer0.textContent = 0;
 scorePlayer1.textContent = 0;
@@ -20,57 +21,73 @@ dice.classList.add('hidden');
 
 //random dice roll
 btnRoll.addEventListener('click', function () {
-  //Random number between 1-6
-  const randomNumber = Math.trunc(Math.random() * 6 + 1);
+  if (yesPlaying) {
+    //Random number between 1-6
+    const randomNumber = Math.trunc(Math.random() * 6 + 1);
 
-  //show dice
-  dice.classList.remove('hidden');
+    //show dice
+    dice.classList.remove('hidden');
 
-  //match dice image with randomNumber
-  dice.src = `dice-${randomNumber}.png`;
+    //match dice image with randomNumber
+    dice.src = `dice-${randomNumber}.png`;
 
-  //If rolled 1, switch to next player
-  if (randomNumber !== 1) {
-    currentScore = currentScore + randomNumber;
-    document.getElementById(
-      `current--${activePlayer}`
-    ).textContent = currentScore;
-  } else {
-    //switch to next player
-    document.getElementById(`current--${activePlayer}`).textContent = 0;
-
-    //reset current score
-    currentScore = 0;
-
-    //if active player is current--0, then switch to current--1. Else activePlayer is 0.
-    if (activePlayer === 0) {
-      activePlayer = 1;
+    //If rolled 1, switch to next player
+    if (randomNumber !== 1) {
+      currentScore = currentScore + randomNumber;
+      document.getElementById(
+        `current--${activePlayer}`
+      ).textContent = currentScore;
     } else {
-      activePlayer = 0;
-    }
+      //switch to next player
+      document.getElementById(`current--${activePlayer}`).textContent = 0;
 
-    //switch background with class "player--active"
-    document.querySelector('.player--0').classList.toggle('player--active');
-    document.querySelector('.player--1').classList.toggle('player--active');
+      //reset current score
+      currentScore = 0;
+
+      //if active player is current--0, then switch to current--1. Else activePlayer is 0.
+      if (activePlayer === 0) {
+        activePlayer = 1;
+      } else {
+        activePlayer = 0;
+      }
+
+      //switch background with class "player--active"
+      document.querySelector('.player--0').classList.toggle('player--active');
+      document.querySelector('.player--1').classList.toggle('player--active');
+    }
   }
 });
 
 //Hold and add the current score to the total score; switch players
 btnHold.addEventListener('click', function () {
-  //   //add the score to the totalScore
-  totalScore[`${activePlayer}`] = totalScore[`${activePlayer}`] + currentScore;
-  console.log(totalScore[`${activePlayer}`]);
-  document.getElementById(`score--${activePlayer}`).textContent =
-    totalScore[`${activePlayer}`];
-  //switch players (copied/pasted from above)
-  document.getElementById(`current--${activePlayer}`).textContent = 0;
-  currentScore = 0;
-  if (activePlayer === 0) {
-    activePlayer = 1;
-  } else {
-    activePlayer = 0;
-  }
-  document.querySelector('.player--0').classList.toggle('player--active');
-  document.querySelector('.player--1').classList.toggle('player--active');
-});
+  if (yesPlaying) {
+    //add the score to the totalScore
+    totalScore[`${activePlayer}`] =
+      totalScore[`${activePlayer}`] + currentScore;
+    document.getElementById(`score--${activePlayer}`).textContent =
+      totalScore[`${activePlayer}`];
 
+    //If score >=100, player wins, background color changes, and Roll and Hold buttons no longer work
+    if (totalScore[`${activePlayer}`] >= 10) {
+      yesPlaying = false;
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add('player--winner');
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.remove('player--active');
+      dice.classList.add('hidden');
+    } else {
+      //switch players (copied/pasted from above)
+      document.getElementById(`current--${activePlayer}`).textContent = 0;
+      currentScore = 0;
+      if (activePlayer === 0) {
+        activePlayer = 1;
+      } else {
+        activePlayer = 0;
+      }
+      document.querySelector('.player--0').classList.toggle('player--active');
+      document.querySelector('.player--1').classList.toggle('player--active');
+    }
+  }
+});
