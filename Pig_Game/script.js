@@ -56,11 +56,21 @@ btnRoll.addEventListener('click', function () {
 });
 
 //Hold and add the current score to the total score; switch players
-// btnHold.addEventListener('click', function () {
-//   //add the score to the totalScore
-//   totalScore[0] = currentScore + s;
-//   console.log(totalScore[0]);
-//   //switch players
-// });
+btnHold.addEventListener('click', function () {
+  //   //add the score to the totalScore
+  totalScore[`${activePlayer}`] = totalScore[`${activePlayer}`] + currentScore;
+  console.log(totalScore[`${activePlayer}`]);
+  document.getElementById(`score--${activePlayer}`).textContent =
+    totalScore[`${activePlayer}`];
+  //switch players (copied/pasted from above)
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  currentScore = 0;
+  if (activePlayer === 0) {
+    activePlayer = 1;
+  } else {
+    activePlayer = 0;
+  }
+  document.querySelector('.player--0').classList.toggle('player--active');
+  document.querySelector('.player--1').classList.toggle('player--active');
+});
 
-//score--0 = 43; add current--0 to score--0; display score--0
