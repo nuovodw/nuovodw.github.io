@@ -71,7 +71,7 @@ btnHold.addEventListener('click', function () {
       totalScore[`${activePlayer}`];
 
     //If score >=100, player wins, background color changes, and Roll and Hold buttons no longer work
-    if (totalScore[`${activePlayer}`] >= 10) {
+    if (totalScore[`${activePlayer}`] >= 100) {
       yesPlaying = false;
       document
         .querySelector(`.player--${activePlayer}`)
