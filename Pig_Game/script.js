@@ -4,12 +4,15 @@ const scorePlayer0 = document.getElementById('score--0');
 const scorePlayer1 = document.getElementById('score--1');
 const crntScorePlayer0 = document.getElementById('current--0');
 const crntScorePlayer1 = document.getElementById('current--1');
+const player0 = document.querySelector('.player--0');
+const player1 = document.querySelector('.player--1');
 const dice = document.querySelector('.dice');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
+const btnNew = document.querySelector('.btn--new');
 let currentScore = 0;
 let activePlayer = 0;
-const totalScore = [0, 0]; //player 1 = 0; player 2 = 1;
+let totalScore = [0, 0]; //player 1 = 0; player 2 = 1;
 let yesPlaying = true;
 
 scorePlayer0.textContent = 0;
@@ -90,4 +93,29 @@ btnHold.addEventListener('click', function () {
       document.querySelector('.player--1').classList.toggle('player--active');
     }
   }
+});
+
+//Reset the game
+
+btnNew.addEventListener('click', function () {
+  //set all scores to 0
+  yesPlaying = true;
+  totalScore = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  scorePlayer0.textContent = 0;
+  scorePlayer1.textContent = 0;
+  crntScorePlayer0.textContent = 0;
+  crntScorePlayer1.textContent = 0;
+
+  //set player 1 as the starting player
+  player0.classList.add('player--active');
+  player1.classList.remove('player--active');
+
+  //set background colors
+  player0.classList.remove('player--winner');
+  player1.classList.remove('player--winner');
+
+  //hide dice
+  dice.classList.add('hidden');
 });
